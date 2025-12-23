@@ -59,7 +59,7 @@ class AutoRegModel:
         #rolling historical predictions
         rolling_preds = [
 
-            AutoReg(self.y[i - self.rolling_window:i], lags=self.lags).fit().forecast(step=1)[0]
+            AutoReg(self.y[i - self.rolling_window:i], lags=self.lags).fit().forecast(steps=1)[0]
             for i in range(self.rolling_window, len(self.y))
 
         ]
@@ -114,6 +114,7 @@ def plot_predictions(data, prediction, stock_list):
         ax.set_ylabel('Price')
         ax.legend()
         ax.grid(True)
+    plt.savefig('stock_forecasts.png')
     plt.tight_layout()
     plt.show()
 
